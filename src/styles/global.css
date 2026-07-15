@@ -1,0 +1,541 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172033;
+    line-height: 1.5;
+
+    background-image:
+        linear-gradient(
+            rgba(243,246,251,.88),
+            rgba(243,246,251,.88)
+        ),
+        url("../img/pizarron.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.header {
+    background: #6de21f;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    box-shadow: 0 5px 18px rgba(37, 99, 235, 0.25);
+    animation: headerEntrada 0.6s ease;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.header a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.55rem 0.8rem;
+    border-radius: 9px;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.25s ease;
+}
+
+.header a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+    width: 0;
+    height: 2px;
+    background: white;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.header a:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+}
+
+.header a:hover::after,
+.header a.active::after {
+    width: 65%;
+}
+
+.header a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    animation: contenidoEntrada 0.6s ease;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.card {
+    background: white;
+    border: 1px solid rgba(203, 213, 225, 0.5);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 35px rgba(23, 32, 51, 0.08);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 45px rgba(23, 32, 51, 0.13);
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+
+.task-form,
+.edit-form {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.task-form input,
+.edit-form input,
+.search {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: white;
+    color: #172033;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.task-form input:hover,
+.edit-form input:hover,
+.search:hover {
+    border-color: #94a3b8;
+}
+
+.task-form input:focus,
+.edit-form input:focus,
+.search:focus {
+    border-color: #e08b1b;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+    transform: translateY(-1px);
+}
+
+.task-form input::placeholder,
+.edit-form input::placeholder,
+.search::placeholder {
+    color: #94a3b8;
+}
+
+.search {
+    margin: 1rem 0;
+}
+
+/* =========================
+   BOTONES GENERALES
+========================= */
+
+.task-form button,
+.edit-form button,
+.filters button,
+.actions button {
+    position: relative;
+    overflow: hidden;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-family: inherit;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.2);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
+}
+
+.task-form button::before,
+.edit-form button::before,
+.filters button::before,
+.actions button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    transform: translate(-50%, -50%);
+    transition:
+        width 0.5s ease,
+        height 0.5s ease;
+}
+
+.task-form button:hover::before,
+.edit-form button:hover::before,
+.filters button:hover::before,
+.actions button:hover::before {
+    width: 220px;
+    height: 220px;
+}
+
+.task-form button:hover,
+.edit-form button:hover,
+.actions button:hover {
+    background: #1d4ed8;
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(37, 99, 235, 0.32);
+}
+
+.task-form button:active,
+.edit-form button:active,
+.filters button:active,
+.actions button:active {
+    transform: translateY(0) scale(0.96);
+    box-shadow: 0 3px 8px rgba(23, 32, 51, 0.2);
+}
+
+.task-form button:focus-visible,
+.edit-form button:focus-visible,
+.filters button:focus-visible,
+.actions button:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.3);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.filters button {
+    background: #e5e7eb;
+    color: #172033;
+    box-shadow: none;
+}
+
+.filters button:hover {
+    background: #cbd5e1;
+    color: #172033;
+    transform: translateY(-2px);
+}
+
+.filters button.active {
+    background: #0bd32c;
+    color: white;
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.24);
+}
+
+.filters button.active:hover {
+    background: #1d4ed8;
+    color: white;
+}
+
+/* =========================
+   LISTA DE TAREAS
+========================= */
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #fff;
+    animation: fade 0.35s ease;
+    transition:
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.task-item:hover {
+    border-color: #93c5fd;
+    background: #f8fbff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(23, 32, 51, 0.09);
+}
+
+.task-item label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.task-item label span {
+    overflow-wrap: anywhere;
+    transition:
+        color 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* =========================
+   CHECKBOX PERSONALIZADO
+========================= */
+
+.task-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: #2563eb;
+    transition: transform 0.2s ease;
+}
+
+.task-item input[type="checkbox"]:hover {
+    transform: scale(1.15);
+}
+
+.task-item input[type="checkbox"]:checked {
+    animation: checkboxAnimado 0.3s ease;
+}
+
+/* =========================
+   TAREA COMPLETADA
+========================= */
+
+.task-item.done {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.task-item.done span {
+    text-decoration: line-through;
+    color: #64748b;
+    opacity: 0.75;
+}
+
+/* =========================
+   ACCIONES
+========================= */
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.actions .danger {
+    background: #dc2626;
+    box-shadow: 0 5px 14px rgba(220, 38, 38, 0.2);
+}
+
+.actions .danger:hover {
+    background: #b91c1c;
+    box-shadow: 0 9px 22px rgba(220, 38, 38, 0.32);
+}
+
+/* =========================
+   MENSAJE SIN TAREAS
+========================= */
+
+.empty {
+    text-align: center;
+    color: #64748b;
+    padding: 2rem 1rem;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    background: #f8fafc;
+    animation: fade 0.4s ease;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes headerEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contenidoEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes checkboxAnimado {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   DISEÑO RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+    .header {
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .header nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .container {
+        margin: 1.2rem auto;
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    .task-item,
+    .task-form,
+    .edit-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-item label {
+        align-items: flex-start;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions button,
+    .task-form button,
+    .edit-form button {
+        width: 100%;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filters button {
+        width: 100%;
+    }
+}
+
+/* Reduce animaciones cuando el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

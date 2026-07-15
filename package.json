@@ -1,0 +1,61 @@
+{
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "latest",
+        "vite": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-router-dom": "latest",
+        "styled-components": "latest"
+    },
+    "devDependencies": {
+        "jest": "latest",
+        "@testing-library/react": "latest",
+        "@testing-library/jest-dom": "latest",
+        "@testing-library/user-event": "latest",
+        "jest-environment-jsdom": "latest",
+        "babel-jest": "latest",
+        "@babel/preset-env": "latest",
+        "@babel/preset-react": "latest",
+        "identity-obj-proxy": "latest"
+    },
+    "jest": {
+        "testEnvironment": "jsdom",
+        "setupFilesAfterEnv": [
+            "<rootDir>/src/setupTests.js"
+        ],
+        "moduleNameMapper": {
+            "\\\\.(css|less|scss)$": "identity-obj-proxy"
+        },
+        "transform": {
+            "^.+\\\\.(js|jsx)$": "babel-jest"
+        }
+    },
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "node": "current"
+                    }
+                }
+            ],
+            [
+                "@babel/preset-react",
+                {
+                    "runtime": "automatic"
+                }
+            ]
+        ]
+    },
+    "name": "gestor-tareas-react",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module"
+}
